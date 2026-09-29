@@ -216,3 +216,22 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Added for Humm
+
+# Node / React
+node_modules/
+dist/
+
+
+.env.*
+!.env.example
+
+# Local data
+backend/data/raw/
+*.db
+*.wav
+*.webm
+*.m4a
+.DS_Store
+Thumbs.db
