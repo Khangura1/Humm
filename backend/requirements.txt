@@ -1,5 +1,7 @@
+##required dependencies for backend
+
 fastapi
 uvicorn[standard]
-numpy
-pytest
-ruff
+numpy==2.5.3
+
+
