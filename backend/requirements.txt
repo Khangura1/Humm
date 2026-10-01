@@ -1,4 +1,7 @@
 ##required dependencies for backend
 
-numpy 
+fastapi
+uvicorn[standard]
+numpy==2.5.3
+
 
