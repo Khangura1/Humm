@@ -1,0 +1,37 @@
+[
+  {
+    "song_id": "custom-ode-to-joy",
+    "title": "Ode to Joy",
+    "artist": "Ludwig van Beethoven",
+    "source": "custom",
+    "midi_path": "midi/custom/ode_to_joy.mid"
+  },
+  {
+    "song_id": "custom-twinkle",
+    "title": "Twinkle Twinkle Little Star",
+    "artist": "Traditional",
+    "source": "custom",
+    "midi_path": "midi/custom/twinkle.mid"
+  },
+  {
+    "song_id": "custom-jingle-bells",
+    "title": "Jingle Bells",
+    "artist": "James Lord Pierpont",
+    "source": "custom",
+    "midi_path": "midi/custom/jingle_bells.mid"
+  },
+  {
+    "song_id": "custom-amazing-grace",
+    "title": "Amazing Grace",
+    "artist": "Traditional",
+    "source": "custom",
+    "midi_path": "midi/custom/amazing_grace.mid"
+  },
+  {
+    "song_id": "custom-happy-birthday",
+    "title": "Happy Birthday to You",
+    "artist": "Mildred J. Hill and Patty Hill",
+    "source": "custom",
+    "midi_path": "midi/custom/happy_birthday.mid"
+  }
+]
