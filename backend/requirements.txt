@@ -4,5 +4,7 @@ fastapi
 uvicorn[standard]
 numpy==2.5.3
 pydantic-settings
+pretty_midi
+
 
 
