@@ -224,8 +224,7 @@ node_modules/
 dist/
 
 
-.env.*
-!.env.example
+
 
 # Local data
 backend/data/raw/
