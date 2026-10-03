@@ -1,4 +1,4 @@
-const PRODUCTION_URL = "https://REPLACE-ME.onrender.com"
+const PRODUCTION_URL = "https://humm-h9dc.onrender.com"
 const API_URL = import.meta.env.DEV ? "http://localhost:8000" : PRODUCTION_URL
 
 
