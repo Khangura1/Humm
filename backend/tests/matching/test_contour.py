@@ -1,6 +1,4 @@
-
 import numpy as np
-
 
 from matching.contour import hz_to_midi
 
