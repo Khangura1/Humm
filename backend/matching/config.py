@@ -1,12 +1,12 @@
 """shared type for audio matching"""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 import numpy as np
 from numpy.typing import NDArray
 
-FloatArray = NDArray[np.float64]
-BoolArray = NDArray[np.bool_]
+type FloatArray = NDArray[np.float64]
+type BoolArray = NDArray[np.bool_]
 
 
 @dataclass(frozen=True)
@@ -19,19 +19,32 @@ class PitchConfig:
     fmin_hz: float = 80.0  # minimum frequency to detect
     fmax_hz: float = 800.0  # maximum frequency to detect
     yin_thresh: float = 0.1  # threshold for YIN algorithm
-    min_rms_db: float = -40.0  # minimumn decibal level (relative to loudest frame )for a pitch to be considered valid
+    min_rms_db: float = -40.0  # minimum decibel level (relative to loudest frame )
     min_run_ms: float = 50.0  # minimum duration for a pitch to be considered valid
+
+    @property
+    def hop_time_s(self) -> float:
+        """time between frames/durating of hop"""
+        return self.hop_size / self.sample_rate_hz
 
 
 @dataclass(frozen=True)
-class PreprocessConfig:
-    """values for preproccessing audio before pitch detection"""
+class MatchConfig:
+    """Values for turning pitches into shapes and matching"""
 
-    cutoff_hz: float = 70.0  # cutoff frequency for high-pass filter
-    target_peak: float = 0.9  # scales audio towards 90% of max volume
-    bottom_thresh_db: float = (
-        -35.0
-    )  # frames with RMS below this threshold will be considered silent
-    surrounding_audio_ms: float = (
-        50.0  # amount of audio to include before and after based on loudness
-    )
+    median_width: int = 5  # looks at middle values + 2 surrounding
+    clip_semitones: float = 12.0  # jumps larger than one octave would be an error
+    downsample: int = 5  # reduces amount of values considered to 1 / 5
+    min_contour_length: int = 10  # values fewer than 10 cant be matched
+    semitone_shifts: tuple[int, ...] = (-1, 0, 1)
+    match_count: int = 3  # number of top matches given
+
+
+@dataclass(frozen=True)
+class AudioEngineConfig:
+    """All audio engines"""
+
+    pitch: PitchConfig = field(default_factory=PitchConfig)
+    match: MatchConfig = field(default_factory=MatchConfig)
+    min_duration_s: float = 1.0  # shortest hum allowed is 1 second
+    min_voiced_ratio: float = 0.2  # 1 / 5 of clip must be voiced humming
