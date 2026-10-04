@@ -78,6 +78,7 @@ def read_wav(path: Path) -> tuple[FloatArray, int]:
     with open(path, "rb") as f:
         return read_wav_bytes(f.read())
 
+
 def read_wav_bytes(data: bytes) -> tuple[FloatArray, int]:
     """reads a WAV file that's already in memory, like an upload"""
     f = io.BytesIO(data)
