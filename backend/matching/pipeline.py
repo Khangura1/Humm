@@ -35,7 +35,7 @@ def check_voiced_ratio(voiced_ratio: float, config: AudioEngineConfig) -> None:
         raise NotEnoughAudioError("Try humming louder or closer")
 
 
-def voiced_pitches(f0_hz: FloatArray, voiced: FloatArray) -> BoolArray:
+def voiced_pitches(f0_hz: FloatArray, voiced: FloatArray) -> FloatArray:
     """A copy of pitches with every unvoiced frame set to NaN"""
     pitches = f0_hz.copy()
     for i in range(len(pitches)):
