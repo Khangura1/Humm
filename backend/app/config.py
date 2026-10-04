@@ -7,10 +7,11 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     """Application default settings"""
 
-    database_url: str = "sqlite:///./test.db"
     cors_origins: str = "http://localhost:5173"
     max_upload_mb: int = 5
     index_path: str = "data/index.npz"
+    catalog_path: str = "data/catalog.json"
+    ffmpeg_timeout_s: float = 10.0
 
     @property
     def cors_origins_list(self) -> list[str]:
@@ -18,6 +19,11 @@ class Settings(BaseSettings):
         return [
             origin.strip() for origin in self.cors_origins.split(",") if origin.strip()
         ]
+
+    @property
+    def max_upload_bytes(self) -> int:
+        """the upload limit in bytes"""
+        return self.max_upload_mb * 1_000_000
 
 
 @lru_cache

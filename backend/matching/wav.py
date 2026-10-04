@@ -1,3 +1,4 @@
+import io
 import struct
 from pathlib import Path
 from typing import BinaryIO
@@ -75,19 +76,24 @@ def decode_samples(data: bytes, channels: int, bits_per_sample: int) -> FloatArr
 def read_wav(path: Path) -> tuple[FloatArray, int]:
     """reads WAV file and returns monosamples between -1 and 1 + sample rate"""
     with open(path, "rb") as f:
-        riff_header = f.read(RIFF_HEADER_SIZE)
-        if len(riff_header) < RIFF_HEADER_SIZE:
-            raise WavFormatError(f"{path} is too short to be a WAV file")
-        if riff_header[0:4] != b"RIFF":
-            raise WavFormatError(f"{path} is not a WAV file (missing RIFF)")
-        if riff_header[8:12] != b"WAVE":
-            raise WavFormatError(f"{path} is not a WAV file (missing WAVE)")
-        chunks = wav_chunk(f)
+        return read_wav_bytes(f.read())
+
+def read_wav_bytes(data: bytes) -> tuple[FloatArray, int]:
+    """reads a WAV file that's already in memory, like an upload"""
+    f = io.BytesIO(data)
+    riff_header = f.read(RIFF_HEADER_SIZE)
+    if len(riff_header) < RIFF_HEADER_SIZE:
+        raise WavFormatError("Too short to be a WAV file")
+    if riff_header[0:4] != b"RIFF":
+        raise WavFormatError("Not a WAV file (missing RIFF)")
+    if riff_header[8:12] != b"WAVE":
+        raise WavFormatError("Not a WAV file (missing WAVE)")
+    chunks = wav_chunk(f)
+
     audio_format, channels, sample_rate_hz, bits_per_sample = parse(chunks[b"fmt "])
     if audio_format != PCM_FORMAT:
         raise WavFormatError(f"WAV format code {audio_format} is not supported")
     samples = decode_samples(chunks[b"data"], channels, bits_per_sample)
-
     return samples, sample_rate_hz
 
 
