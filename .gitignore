@@ -228,6 +228,7 @@ dist/
 
 # Local data
 backend/data/raw/
+backend/data/index.npz
 *.db
 *.wav
 *.webm
