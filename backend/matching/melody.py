@@ -34,14 +34,14 @@ def read_midi_notes(path: Path) -> list[Note]:
                 midi=midi_note.pitch, start_s=midi_note.start, end_s=midi_note.end
             )
             notes.append(note)
-        notes.sort(key=start_time)
+    notes.sort(key=start_time)
     return notes
 
 
 def notes_to_frames(notes: list[Note], hop_seconds: float) -> FloatArray:
     """Turn notes into a single MIDI number per frame"""
     if len(notes) == 0:
-        return FloatArray
+        return np.zeros(0)
     last_end_s = 0.0
     for note in notes:
         last_end_s = max(last_end_s, note.end_s)

@@ -9,5 +9,9 @@ class WavFormatError(MatchingError):
     """Not reading the right type of file"""
 
 
+class CatalogError(MatchingError):
+    """catalog has a duplicate or broken entry"""
+
+
 class NotEnoughAudioError(MatchingError):
     """hum is too short, too quiet, or too unclear"""
