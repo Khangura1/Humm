@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from matching.config import AudioEngineConfig, BoolArray, FloatArray
+from matching.config import AudioEngineConfig, FloatArray
 from matching.contour import hz_to_midi, normalize_contour
 from matching.errors import NotEnoughAudioError
 from matching.index import MelodyIndex
