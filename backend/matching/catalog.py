@@ -4,6 +4,8 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
+from matching.errors import CatalogError
+
 
 @dataclass(frozen=True)
 class CatalogEntry:
@@ -37,6 +39,8 @@ def load_catalog(path: Path) -> list[CatalogEntry]:
     seen_ids = set()
     for raw in raw_entries:
         entry = parse(raw, path.parent)
+        if entry.song_id in seen_ids:
+            raise CatalogError(f"Duplicate song_id in catalog: {entry.song_id}")
         seen_ids.add(entry.song_id)
         entries.append(entry)
     return entries
