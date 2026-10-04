@@ -3,10 +3,10 @@
 from dataclasses import dataclass
 from pathlib import Path
 
-
 import numpy as np
-from matching.config import FloatArray
 import pretty_midi
+
+from matching.config import FloatArray
 
 
 @dataclass(frozen=True)

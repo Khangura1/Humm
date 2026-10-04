@@ -46,7 +46,7 @@ def find_lowest_difference(
     lowest_difference = np.inf
     for shift in config.semitone_shifts:
         result = subsequence_dtw(hum + shift, song_contour)
-        lowest_difference = min(lowest_difference, result.cost)
+        lowest_difference = min(lowest_difference, result.difference)
     return lowest_difference
 
 

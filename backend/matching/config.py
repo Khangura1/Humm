@@ -37,7 +37,7 @@ class MatchConfig:
     downsample: int = 5  # reduces amount of values considered to 1 / 5
     min_contour_length: int = 10  # values fewer than 10 cant be matched
     semitone_shifts: tuple[int, ...] = (-1, 0, 1)
-    match_count: int = 3  # number of top matches given
+    match_count: int = 1  # number of top matches given
 
 
 @dataclass(frozen=True)

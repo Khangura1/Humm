@@ -2,9 +2,9 @@
 
 from dataclasses import dataclass
 
-from matching.config import FloatArray
-
 import numpy as np
+
+from matching.config import FloatArray
 
 
 @dataclass(frozen=True)

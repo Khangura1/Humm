@@ -5,7 +5,6 @@ import numpy as np
 from matching.config import FloatArray, MatchConfig
 from matching.errors import NotEnoughAudioError
 
-
 # using the note A4 as reference point/standard tune
 A4_HZ: float = 440.0
 A4_MIDI: float = 69.0
@@ -33,8 +32,7 @@ def median_filter(x: FloatArray, width: int) -> FloatArray:
 
 
 def normalize_contour(semitones: FloatArray, config: MatchConfig) -> FloatArray:
-    """Takes pitch sequenc from songs or humms, remove its key, produce smoothed shape"""
-
+    """Pitch sequence from songs or humms, remove its key, produce smoothed shape"""
     has_pitch = ~np.isnan(semitones)
     pitched = semitones[has_pitch]
     if len(pitched) == 0:

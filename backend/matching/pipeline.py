@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from matching.config import AudioEngineConfig, FloatArray
+from matching.config import AudioEngineConfig, BoolArray, FloatArray
 from matching.contour import hz_to_midi, normalize_contour
 from matching.errors import NotEnoughAudioError
 from matching.index import MelodyIndex
@@ -14,8 +14,7 @@ from matching.search import Match, rank_songs
 
 @dataclass(frozen=True)
 class Analysis:
-    """everything the system takes from one user hum
-    everything the server needs to save"""
+    """everything the system learns from one user hum"""
 
     duration_s: float
     voiced_ratio: float  # fraction of frames with audible humming
@@ -27,7 +26,7 @@ def check_duration(duration_s: float, config: AudioEngineConfig) -> None:
     if duration_s < config.min_duration_s:
         raise NotEnoughAudioError(
             f"The recording is {duration_s:.1f} s long."
-            f"Hum for at least {config.min_duration_s:.0f} s."
+            f" Hum for at least {config.min_duration_s:.0f} s."
         )
 
 
@@ -36,7 +35,7 @@ def check_voiced_ratio(voiced_ratio: float, config: AudioEngineConfig) -> None:
         raise NotEnoughAudioError("Try humming louder or closer")
 
 
-def voiced_pitches(f0_hz: FloatArray, voiced: FloatArray) -> FloatArray:
+def voiced_pitches(f0_hz: FloatArray, voiced: FloatArray) -> BoolArray:
     """A copy of pitches with every unvoiced frame set to NaN"""
     pitches = f0_hz.copy()
     for i in range(len(pitches)):
@@ -56,10 +55,10 @@ def analyze(
     duration_s = len(signal) / sample_rate_hz
     check_duration(
         duration_s, config
-    )  # Measures length of hum to reject short audio clips
+    )  # Rejects clips that are too short before anything else
 
     track = track_pitch(signal, config.pitch)
-    voiced = voicing_mask(track.config.pitch)
+    voiced = voicing_mask(track, config.pitch)
     voiced_ratio = float(np.mean(voiced))
     check_voiced_ratio(
         voiced_ratio, config

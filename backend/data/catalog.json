@@ -33,7 +33,68 @@
     "artist": "Mildred J. Hill and Patty Hill",
     "source": "custom",
     "midi_path": "midi/custom/happy_birthday.mid"
+  },
+   {
+    "song_id": "custom-row-your-boat",
+    "title": "Row, Row, Row Your Boat",
+    "artist": "Traditional",
+    "source": "custom",
+    "midi_path": "midi/custom/row_your_boat.mid"
+  },
+  {
+    "song_id": "custom-old-macdonald",
+    "title": "Old MacDonald Had a Farm",
+    "artist": "Traditional",
+    "source": "custom",
+    "midi_path": "midi/custom/old_macdonald.mid"
+  },
+  {
+    "song_id": "custom-london-bridge",
+    "title": "London Bridge Is Falling Down",
+    "artist": "Traditional",
+    "source": "custom",
+    "midi_path": "midi/custom/london_bridge.mid"
+  },
+  {
+    "song_id": "custom-merry-christmas",
+    "title": "We Wish You a Merry Christmas",
+    "artist": "Traditional",
+    "source": "custom",
+    "midi_path": "midi/custom/merry_christmas.mid"
+  },
+  {
+    "song_id": "custom-mountain-king",
+    "title": "In the Hall of the Mountain King",
+    "artist": "Edvard Grieg",
+    "source": "custom",
+    "midi_path": "midi/custom/mountain_king.mid"
+  },
+  {
+    "song_id": "custom-bridal-chorus",
+    "title": "Bridal Chorus (Here Comes the Bride)",
+    "artist": "Richard Wagner",
+    "source": "custom",
+    "midi_path": "midi/custom/bridal_chorus.mid"
+  },
+  {
+    "song_id": "custom-fur-elise",
+    "title": "Für Elise",
+    "artist": "Ludwig van Beethoven",
+    "source": "custom",
+    "midi_path": "midi/custom/fur_elise.mid"
+  },
+  {
+    "song_id": "custom-silent-night",
+    "title": "Silent Night",
+    "artist": "Franz Xaver Gruber",
+    "source": "custom",
+    "midi_path": "midi/custom/silent_night.mid"
+  },
+  {
+    "song_id": "custom-mary-lamb",
+    "title": "Mary Had a Little Lamb",
+    "artist": "Traditional",
+    "source": "custom",
+    "midi_path": "midi/custom/mary_lamb.mid"
   }
-[
-  
 ]
