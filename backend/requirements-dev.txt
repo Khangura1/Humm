@@ -1,7 +1,6 @@
 #tools required for developer dependencies
 
 -r requirements.txt 
-pytest
 ruff
 httpx
 mypy
