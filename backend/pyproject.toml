@@ -10,8 +10,7 @@ warn_unused_ignores = true
 [[tool.mypy.overrides]]
 module = "pertty_midi.*"
 ignore_missing_imports = true
-module = "matching.*"
-strict = true
+
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
